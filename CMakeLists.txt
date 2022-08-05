@@ -42,7 +42,10 @@ else()
 endif(MSVC)
 
 
+# Generate local ogdf library
+add_subdirectory(ogdf-conda/src)
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    # these appear to actualy load omp headers as well...
     SET(OGDF_INCLUDE "/usr/local/include")
     SET(OGDF_LIB "/usr/local/lib")
 
