@@ -51,6 +51,9 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
     include_directories(${OGDF_INCLUDE})
     link_directories(${OGDF_LIB})
+
+    SET(OMP_INC "/opt/homebrew/include")
+    include_directories(${OMP_INC})
 elseif(WIN32)
     SET(OGDF_INCLUDE "C:/ogdf/include")
     SET(OGDF_LIB "C:/ogdf/lib")
