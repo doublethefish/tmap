@@ -38,10 +38,9 @@ See <a href="http://tmap.gdb.tools">http://tmap.gdb.tools</a>
 [wanted](https://github.com/reymond-group/tmap)\!</span>
 
 ### Installation
-tmap is installed using the conda package manager. Don't have conda? Download miniconda.
 
 ```bash
-conda install -c tmap tmap
+python3 -m pip install "git+https://git@github.com/doublethefish/tmap.git@development"
 ```
 
 We suggest using faerun to plot the data layed out by tmap. But you can of course also use matplotlib (which might be to slow for large data sets and doesn't provide interactive features).
