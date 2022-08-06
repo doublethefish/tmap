@@ -55,6 +55,8 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     set(available_default_warning_flags_release "-Wno-error=unused-but-set-variable -Wno-error=strict-overflow")
   endif()
   set(available_default_warning_flags_release "${available_default_warning_flags_release} -Wno-error=unused-variable")
-  set(warnings_as_errors_flag "-Werror")
+  # FIXME: reintroduce -Werror when the new warnings are fixed. compilers means
+  #        new warning.
+  # set(warnings_as_errors_flag "-Werror")
   set(warnings_not_as_errors_flag "-Wno-error")
 endif()
