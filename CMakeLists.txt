@@ -17,6 +17,10 @@ else()
   set(CMAKE_CXX_FLAGS_DEBUG "-O2")
   set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 
+  # Ensure we have position independent code gen, to help linking x-platform.
+  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fPIC")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fPIC")
+
   if(CMAKE_C_COMPILER_ID MATCHES "Clang")
     set(OpenMP_C "${CMAKE_C_COMPILER}")
     # set(OpenMP_C_FLAGS "-fopenmp=libomp -Wno-unused-command-line-argument")
