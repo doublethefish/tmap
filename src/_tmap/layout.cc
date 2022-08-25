@@ -259,6 +259,13 @@ tmap::MSTFromLSHForest(tmap::LSHForest &lsh_forest,
 {
   EdgeWeightedGraph<float> g;
   uint32_t vertex_count = lsh_forest.size();
+  if (vertex_count < 1) {
+    return std::make_tuple(
+        std::vector<uint32_t>(),
+        std::vector<uint32_t>(),
+        std::vector<float>()
+    );
+  }
 
   std::vector<uint32_t> from;
   std::vector<uint32_t> to;
@@ -350,6 +357,13 @@ tmap::LayoutFromLSHForest(tmap::LSHForest &lsh_forest,
   EdgeWeightedGraph<float> g;
   uint32_t vertex_count = lsh_forest.size();
 
+  if (vertex_count <1) {
+    return std::make_tuple(std::vector<float>(),
+                           std::vector<float>(),
+                           std::vector<uint32_t>(),
+                           std::vector<uint32_t>(),
+                           gp);
+  }
   std::vector<uint32_t> from;
   std::vector<uint32_t> to;
   std::vector<float> weight;
