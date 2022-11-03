@@ -29,6 +29,7 @@ before-build = """\
 before-all = ["brew install libomp"]
 before-build = """\
   which clang++ && \
+  ls -alh / && \
   cd ./ogdf-conda/src && \
   mkdir build && \
   cd build && \
