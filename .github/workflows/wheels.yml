@@ -15,6 +15,9 @@ jobs:
       # wheel cannot be tested in this configuration.
       CIBW_ARCHS_MACOS: "x86_64 universal2 arm64"
 
+      # Build `aarch64` (arm64) and `amd64` on linux
+      CIBW_ARCHS_LINUX: "x86_64 i686 aarch64"
+
     steps:
       - uses: actions/checkout@v3
 
