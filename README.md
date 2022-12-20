@@ -36,6 +36,23 @@ See <a href="http://tmap.gdb.tools">http://tmap.gdb.tools</a>
 
 ### Installation
 
+#### Mac M1
+
+You need `libomp`and `cmake` to be installed with [Homebrew](https://brew.sh).
+
+```bash
+brew install cmake &&
+brew install libomp
+```
+
+You then need cmake to find libomp by doing (normally the path should be this one, if not check with `brew info libomp`:
+
+```bash
+export CXXFLAGS="-I/opt/homebrew/opt/libomp/include"
+```
+
+You should then be able to run
+
 ```bash
 python3 -m pip install "git+https://git@github.com/doublethefish/tmap.git@development"
 ```
