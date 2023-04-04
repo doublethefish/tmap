@@ -14,6 +14,8 @@ from setuptools.command.build_ext import build_ext
 from setuptools.command.test import test as TestCommand
 from shutil import copyfile, copymode
 
+# RUNNER_DEBUG is set by github actions when rebuilding
+ENABLE_VERBOSE_LOGGING=os.environ.get("RUNNER_DEBUG", False)
 
 class CMakeExtension(Extension):
     def __init__(self, name, sourcedir=""):
@@ -76,8 +78,10 @@ class CMakeBuild(build_ext):
 
             # increase job count on windows
             build_args += ["/m"]
-            # enable verbose output
-            build_args += ["/verbosity:detailed"]
+
+            if ENABLE_VERBOSE_LOGGING:
+                # enable verbose output
+                build_args += ["/verbosity:detailed"]
         elif platform.system() == "Darwin":
             cmake_args += ["-DOpenMP_C_FLAG=-fopenmp"]
             cmake_args += ["-DOpenMP_CXX_FLAG=-fopenmp"]
@@ -85,17 +89,21 @@ class CMakeBuild(build_ext):
 
             # increase job count on OSX
             build_args += [f"-j{num_cores}"]
-            # enable verbose output
-            cmake_args += ["--log-level=VERBOSE"]
-            cmake_args += ["--debug-output"]
+
+            if ENABLE_VERBOSE_LOGGING:
+                # enable verbose output
+                cmake_args += ["--log-level=VERBOSE"]
+                cmake_args += ["--debug-output"]
         else:
             cmake_args += ["-DCMAKE_BUILD_TYPE=" + cfg]
 
             # increase job count on linux
             build_args += [f"-j{num_cores}"]
-            # enable verbose output
-            cmake_args += ["--log-level=VERBOSE"]
-            cmake_args += ["--debug-output"]
+
+            if ENABLE_VERBOSE_LOGGING:
+                # enable verbose output
+                cmake_args += ["--log-level=VERBOSE"]
+                cmake_args += ["--debug-output"]
 
 
         if not os.path.exists(self.build_temp):
