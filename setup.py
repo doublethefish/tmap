@@ -76,6 +76,8 @@ class CMakeBuild(build_ext):
 
             # increase job count on windows
             build_args += ["/m"]
+            # enable verbose output
+            build_args += ["/verbosity:detailed"]
         elif platform.system() == "Darwin":
             cmake_args += ["-DOpenMP_C_FLAG=-fopenmp"]
             cmake_args += ["-DOpenMP_CXX_FLAG=-fopenmp"]
@@ -83,11 +85,17 @@ class CMakeBuild(build_ext):
 
             # increase job count on OSX
             build_args += [f"-j{num_cores}"]
+            # enable verbose output
+            cmake_args += ["--log-level=VERBOSE"]
+            cmake_args += ["--debug-output"]
         else:
             cmake_args += ["-DCMAKE_BUILD_TYPE=" + cfg]
 
             # increase job count on linux
             build_args += [f"-j{num_cores}"]
+            # enable verbose output
+            cmake_args += ["--log-level=VERBOSE"]
+            cmake_args += ["--debug-output"]
 
 
         if not os.path.exists(self.build_temp):

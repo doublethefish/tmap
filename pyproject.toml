@@ -17,6 +17,8 @@ maintainers = [
 [tool.cibuildwheel]
 # Skip 32-bit builds, musl build, and pypy builds
 skip = ["*-manylinux_i686", "*-musllinux_*", "pp*", "*p36-*", "*p37-*", "*p38-*"]
+# Increase pip debugging output
+build-verbosity = 1
 
 [tool.cibuildwheel.linux]
 before-build = """\
