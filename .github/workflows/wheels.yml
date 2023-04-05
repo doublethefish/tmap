@@ -37,6 +37,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      # https://github.com/qemu/qemu (software emulation, inc. for aarch64)
+      - name: Set up QEMU
+        if: runner.os == 'Linux'
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: all
+
       # Used to host cibuildwheel
       - uses: actions/setup-python@v3
 
